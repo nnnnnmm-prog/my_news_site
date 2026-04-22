@@ -1,0 +1,19 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+.env/
+
+# База данных
+db.sqlite3
+
+# Файлы кэша Python
+__pycache__/
+*.pyc
+
+# Локальные настройки и статика (при разработке)
+/media/
+/static/
+
+# Файлы IDE (PyCharm)
+.idea/
