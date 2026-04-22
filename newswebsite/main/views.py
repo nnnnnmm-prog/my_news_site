@@ -4,10 +4,16 @@ from django.contrib.auth import login
 from .forms import RegisterForm
 from .forms import NewsForm
 from django.contrib.auth.decorators import login_required
-
+from django.utils import timezone
 @login_required
 def home (request):
     news_list = News.objects.all()
+    for news in news_list:
+        if news.created_at > timezone.now() - timezone.timedelta(hours=6):
+            news.is_hot = True
+        else:
+            news.is_hot = False
+
     return render(request, 'main/home.html', {'news_list':news_list })
 @login_required
 def news_detail (request, pk):
@@ -22,7 +28,7 @@ def news_create  (request):
             return redirect('home')
     else:
         form = NewsForm()
-        return render(request, 'main/news_form.html', {'form':form})
+    return render(request, 'main/news_form.html', {'form':form})
 @login_required
 def news_update (request, pk):
     news = get_object_or_404(News, pk=pk)

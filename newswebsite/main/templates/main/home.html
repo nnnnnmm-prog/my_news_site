@@ -56,7 +56,12 @@
                             <img src="https://via.placeholder.com/400x200?text=Нет+изображения" class="card-img-top" alt="Нет изображения" style="height: 200px; object-fit: cover;">
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ news.title }}</h5>
+                            <h5 class="card-title">
+                                {{ news.title }}
+                                {%if news.is_hot%}
+                                    <span class=" badge bg-danger" style="font-size:12px;">🔥 HOT</span>
+                                {%endif%}
+                            </h5>
                             <p class="card-text">{{ news.content|truncatewords:20 }}</p>
                             <a href="{% url 'news_detail' news.id %}" class="btn btn-primary">Читать →</a>
                         </div>
