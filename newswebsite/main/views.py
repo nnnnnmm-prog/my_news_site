@@ -36,7 +36,7 @@ def news_update (request, pk):
         form = NewsForm (request.POST, instance= news )
         if form.is_valid ():
             form.save ()
-            return redirect('news_detail' , pk=news.pk )
+            return redirect('home'  )
     else:
         form = NewsForm(instance=news )
         return render(request, 'main/news_form.html', {'form': form})
